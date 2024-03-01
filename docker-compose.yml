@@ -4,9 +4,7 @@ services:
   api01: &api
     hostname: api01
     container_name: api01
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: hallex/rinha-backend-2024-hyperf:1.0.0
     ports:
       - "9501:9501"
     volumes:
@@ -38,6 +36,11 @@ services:
       - "9502:9501"
     depends_on:
       - db
+    deploy:
+      resources:
+        limits:
+          cpus: "0.40"
+          memory: "100MB"
 
   db:
     container_name: db
