@@ -1,4 +1,5 @@
 FROM hyperf/hyperf:8.2-alpine-v3.18-swoole
+LABEL maintainer="HállexCosta <hallex.costa@hotmail.com>" version="1.0" license="MIT" app.name="Rinha Backend 2024 Hyperf"
 ENV timezone="America/Sao_Paulo" \
   APP_ENV=prod \
   SCAN_CACHEABLE=true
@@ -12,8 +13,8 @@ RUN set -ex \
   && echo "${timezone}" > /etc/timezone \
   && apk --no-cache add php82-pdo_pgsql
 
-FROM hyperf/hyperf:8.2-alpine-v3.18-swoole
-COPY --from=0 /opt/www .
+#FROM hyperf/hyperf:8.2-alpine-v3.18-swoole
+#COPY --from=0 /opt/www .
 RUN composer install --prefer-dist --no-dev --optimize-autoloader
 
 EXPOSE 9501

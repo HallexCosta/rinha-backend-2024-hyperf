@@ -4,7 +4,7 @@ services:
   api01: &api
     hostname: api01
     container_name: api01
-    image: hallex/rinha-backend-2024-hyperf:1.0.0
+    image: hallex/rinha-backend-2024-hyperf:1.0.1
     ports:
       - "9501:9501"
     volumes:
