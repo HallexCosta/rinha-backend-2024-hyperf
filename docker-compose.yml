@@ -4,7 +4,9 @@ services:
   api01: &api
     hostname: api01
     container_name: api01
-    image: hallex/rinha-backend-2024-hyperf:1.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "9501:9501"
     volumes:
@@ -77,6 +79,22 @@ services:
         limits:
           cpus: "0.15"
           memory: "50MB"
+
+  #gatling:
+  #  container_name: gatling
+  #  hostname: gatling
+  #  build:
+  #    context: .
+  #    dockerfile: Dockerfile.gatling
+  #  network_mode: host
+  #  volumes:
+  #    - ./gatling:/gatling
+  #  # command: sleep infinity
+  #  depends_on:
+  #    - api01
+  #    - api02
+  #    - lb01
+  #    - db
 
 networks:
   default:

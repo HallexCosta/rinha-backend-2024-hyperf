@@ -14,3 +14,4 @@ vendor/
 .vscode/
 ./gatling/user-files/results/*
 ./gatling/gatling
+./gatling/gatling/3.10.3/target/test-classes/*

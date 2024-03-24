@@ -1,0 +1,26 @@
+FROM openjdk:11-jre-slim
+
+WORKDIR /gatling
+
+# Instalando o Gatling
+ENV GATLING_VERSION=3.10.3
+RUN apt-get update && \
+    apt-get install -y curl
+# RUN apt-get update && \
+    # apt-get install -y unzip wget && \
+    # wget https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/$GATLING_VERSION/gatling-charts-highcharts-bundle-$GATLING_VERSION-bundle.zip && \
+    # unzip /gatling/gatling-charts-highcharts-bundle-$GATLING_VERSION-bundle.zip && \
+#    rm /gatling/gatling-charts-highcharts-bundle-$GATLING_VERSION-bundle.zip && \
+    # mkdir -p /gatling/gatling/ && \
+    # mv /gatling/gatling-charts-highcharts-bundle-$GATLING_VERSION-bundle /gatling/gatling/$GATLING_VERSION
+
+# Setando variáveis de ambiente
+# ENV GATLING_HOME /gatling-charts-highcharts-bundle-$GATLING_VERSION
+ENV GATLING_HOME /gatling/gatling/$GATLING_VERSION
+ENV PATH "$PATH:$GATLING_HOME/bin"
+
+# Copiando seu script para dentro do contêiner
+# COPY ./gatling /gatling
+
+# Executando o script Gatling
+CMD ["/gatling/gatling-run.sh"]

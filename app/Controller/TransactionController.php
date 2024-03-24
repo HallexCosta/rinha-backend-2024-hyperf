@@ -46,10 +46,11 @@ class TransactionController extends AbstractController
 
         $customerId = $this->request->route('id');
 
-        list($row) = Db::select('select * from update_balance(?, ?, ?)', [
+        list($row) = Db::select('select * from update_balance(?, ?, ?, ?)', [
             $customerId,
             $transactionData['tipo'],
-            $transactionData['valor']
+            $transactionData['valor'],
+            $transactionData['descricao']
         ]);
 
         if ($row->is_error) {
@@ -62,13 +63,13 @@ class TransactionController extends AbstractController
             return $this->response->withStatus(500)->json(['message' => 'Erro não previsto']);
         }
 
-        Db::table('transactions')
-            ->insert([
-                'value' => $transactionData['valor'],
-                'type' => $transactionData['tipo'],
-                'description' => $transactionData['descricao'],
-                'customer_id' => $customerId
-            ]);
+//        Db::table('transactions')
+//            ->insert([
+//                'value' => $transactionData['valor'],
+//                'type' => $transactionData['tipo'],
+//                'description' => $transactionData['descricao'],
+//                'customer_id' => $customerId
+//            ]);
 
         return [
             'message' => $row->message,
